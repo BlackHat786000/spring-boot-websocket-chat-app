@@ -1,13 +1,37 @@
-# Spring boot chat application
+# Spring Boot Chat Application
 
-mvn package
+## Tutorial for Amazon EC2 Ubuntu
 
-Provision ubuntu ec2 and install java 17.0.2
+**Allow inbound traffic on port 80**
 
-sudo apt update
-sudo apt install openjdk-17-jdk -y
-java -version
+**This tutorial is tested with JDK 17.0.2**
 
-In tmux session
+1. **Provision Ubuntu EC2 and Install Java 17.0.2**
+   - Update the package index:
+     ```bash
+     sudo apt update
+     ```
+   - Install OpenJDK 17:
+     ```bash
+     sudo apt install openjdk-17-jdk -y
+     ```
+   - Verify the Java installation:
+     ```bash
+     java -version
+     ```
 
-sudo java -jar chat-1.jar
+2. **Build the Application**
+   - Package the Spring Boot application using Maven:
+     ```bash
+     mvn package
+     ```
+
+3. **Run the Application in a tmux Session**
+   - Start a tmux session (if not already in one):
+     ```bash
+     tmux
+     ```
+   - Run the Spring Boot JAR file:
+     ```bash
+     sudo java -jar chat-1.jar
+     ```
