@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<title>WebRTC Video Conferencing Application</title>
+</head>
+<body>
+<noscript>
+	<h2>Sorry! Your browser doesn't support Javascript</h2>
+</noscript>
+
+<script>
+	async function promptForReferralId() {
+        const referralId = prompt('Enter Referral ID to participate in this contest:');
+
+        if (referralId === null || referralId.trim() === "") {
+            alert('Referral ID is required. Please try again.');
+            location.reload();
+        } else {
+            await checkReferralId(referralId);
+        }
+    }
+
+    async function checkReferralId(referralId) {
+        const apiUrl = window.location.origin + '/win-daily-prizes';
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: referralId,
+            });
+
+            const data = await response.text();
+
+            if (data === 'Success') {
+                console.log('Success');
+            } else {
+                location.reload();
+            }
+        } catch (error) {
+            location.reload();
+        }
+    }
+
+    promptForReferralId();
+
+</script>
+
+	<div>
+		<img style="float: left; width: auto; height: 50px"
+			src="https://itsallbinary.com/wp-content/uploads/2017/03/final_itsallbinary.gif" />
+		<h3 style="position: relative; left: 10px;">WebRTC Video Conferencing <br />Application Demo
+		</h3>
+	</div>
+
+	<!-- Other person's camera video will show up here -->
+	<div>
+		<h3 style="margin: 5px">Other Person</h3>
+		<video style="width: 50vh; height: 50vh;" id="remoteVideo"
+			poster="https://img.icons8.com/fluent/48/000000/person-male.png" autoplay></video>
+	</div>
+
+	<!-- Your camera video will show up here. -->
+	<div>
+		<h3 style="margin: 5px">You</h3>
+		<video style="width: auto; height: 20vh;" id="localVideo"
+			poster="https://img.icons8.com/fluent/48/000000/person-male.png" autoplay muted></video>
+	</div>
+
+	<!-- Button to leave video conference. -->
+	<div class="box">
+		<button id="leaveButton" style="background-color: #008CBA; color: white; ">Leave Video Conference</button>
+	</div>
+
+	<script type="text/javascript" src="conf.js?reloads=true"></script>
+
+</body>
+</html>

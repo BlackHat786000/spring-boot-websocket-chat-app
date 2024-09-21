@@ -35,3 +35,19 @@
      ```bash
      sudo java -jar chat-1.jar
      ```
+
+
+## To convert the PEM files to the PKCS12 version:
+
+Go to /etc/letsencrypt/live/absurvey.giize.com.
+We convert the keys to PKCS12 using OpenSSL in the terminal as follows.
+openssl pkcs12 -export -in fullchain.pem -inkey privkey.pem -out keystore.p12 -name tomcat -CAfile chain.pem -caname root
+
+The file 'keystore.p12' with PKCS12 is now generated in '/etc/letsencrypt/live/absurvey.giize.com'.
+
+server.port: 443
+security.require-ssl=true
+server.ssl.key-store:/etc/letsencrypt/live/absurvey.giize.com/keystore.p12
+server.ssl.key-store-password: changeit
+server.ssl.keyStoreType: PKCS12
+server.ssl.keyAlias: tomcat

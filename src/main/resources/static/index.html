@@ -77,15 +77,20 @@
         </ul>
         <form id="messageForm" name="messageForm">
             <div class="form-group">
-                <div class="input-group clearfix">
-                    <input accept="image/*" id="imageInput" type="file"/>
-                    <input autocomplete="off" class="form-control" id="message"
-                           placeholder="Type a feedback and send..."
-                           type="text"/>
-                    <button class="primary" type="submit">Send</button>
+                <!-- Flex container for the links and file input -->
+                <div class="input-group" style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <a href="/conference/conf.html" style="margin-right: 10px;">Video</a>
+                    <a href="/conference/screenshare.html" style="margin-right: 10px;">Screen</a>
+                    <input accept="image/*" id="imageInput" type="file" style="margin-right: 10px;"/>
+                </div>
+                <!-- Text input and button below the links and file input -->
+                <div class="input-group clearfix" style="display: flex; align-items: center;">
+                    <input autocomplete="off" class="form-control" id="message" placeholder="Type a feedback and send..." type="text" style="flex: 1; margin-right: 10px;"/>
+                    <button class="primary" type="submit" style="margin-right: 10px;">Send</button>
                 </div>
             </div>
         </form>
+
     </div>
 </div>
 
